@@ -7,8 +7,32 @@ var xhrRequest = function (url, type, callback) {
   xhr.send();
 };
 
+function getRandomQuote() {
+  var url = 'http://coolskies.net/quotegenerator/apis/random';
+  xhrRequest(url, 'GET', 
+    function(responseText) {
+	  var json = JSON.parse(responseText);
+	  var quote = json.quote;
+	  var author = json.author;
+	  
+	  var dictionary = {
+        'KEY_RANDOM_QUOTE': quote,
+        'KEY_RANDOM_QUOTE_AUTHOR': author
+		};
+		
+	  Pebble.sendAppMessage(dictionary,
+        function(e) {
+          console.log('Quote info sent to Pebble successfully!');
+        },
+        function(e) {
+          console.log('Error sending Quote info to Pebble!');
+        }
+      );
+	} );
+}
+
 function locationSuccess(pos) {
-  console.log( "Location Success" );
+
   // Construct URL
   var url = 'http://api.openweathermap.org/data/2.5/weather?lat=' +
       pos.coords.latitude + '&lon=' + pos.coords.longitude;

@@ -26,8 +26,11 @@ static void inboxReceivedCallback(DictionaryIterator *iterator, void *context)
       case KEY_BLINKING_COLONS:
         timecontroller_setBlinkingColons( t->value->int32 );
         break;
-      case KEY_WEATHER_UPDATE_INTERVAL:
-        weathercontroller_setWeatherUpdateInterval( t->value->int32 );
+      case KEY_RANDOM_QUOTE:
+        
+        break;
+      case KEY_RANDOM_QUOTE_AUTHOR:
+        
         break;
       default:
         APP_LOG(APP_LOG_LEVEL_ERROR, "Key %d not recognized!", (int)t->key);
