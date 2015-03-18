@@ -1,0 +1,96 @@
+{
+    "appKeys": {
+        "KEY_BLINKING_COLONS": 5,
+        "KEY_CONDITIONS": 3,
+        "KEY_TEMPERATURE": 0,
+        "KEY_TEMPERATURE_MAX": 1,
+        "KEY_TEMPERATURE_MIN": 2,
+        "KEY_TEMPERATURE_UNIT": 4,
+        "KEY_WEATHER_UPDATE_INTERVAL": 6
+    },
+    "capabilities": [
+        "location",
+        "configurable"
+    ],
+    "companyName": "cchienhs@gmail.com",
+    "longName": "Android Weather",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "characterRegex": "[0-9.:]",
+                "file": "fonts/Sansation-Regular.ttf",
+                "name": "FONT_SANSATION_REGULAR_42",
+                "type": "font"
+            },
+            {
+                "file": "images/BackgroundF.png",
+                "name": "BACKGROUND_WEATHER",
+                "type": "png"
+            },
+            {
+                "file": "images/50d.png",
+                "name": "50d",
+                "type": "png"
+            },
+            {
+                "file": "images/13d.png",
+                "name": "13d",
+                "type": "png"
+            },
+            {
+                "file": "images/11d.png",
+                "name": "11d",
+                "type": "png"
+            },
+            {
+                "file": "images/10d.png",
+                "name": "10d",
+                "type": "png"
+            },
+            {
+                "file": "images/09d.png",
+                "name": "09d",
+                "type": "png"
+            },
+            {
+                "file": "images/04d.png",
+                "name": "04d",
+                "type": "png"
+            },
+            {
+                "file": "images/03d.png",
+                "name": "03d",
+                "type": "png"
+            },
+            {
+                "file": "images/02n.png",
+                "name": "02n",
+                "type": "png"
+            },
+            {
+                "file": "images/02d.png",
+                "name": "02d",
+                "type": "png"
+            },
+            {
+                "file": "images/01n.png",
+                "name": "01n",
+                "type": "png"
+            },
+            {
+                "file": "images/01d.png",
+                "name": "01d",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "2",
+    "shortName": "Android Weather ",
+    "uuid": "3b8d9a1a-22fa-42be-adb8-8708b07a1599",
+    "versionCode": 1,
+    "versionLabel": "2.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
