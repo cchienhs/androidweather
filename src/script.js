@@ -7,30 +7,6 @@ var xhrRequest = function (url, type, callback) {
   xhr.send();
 };
 
-function getRandomQuote() {
-  var url = 'http://coolskies.net/quotegenerator/apis/random';
-  xhrRequest(url, 'GET', 
-    function(responseText) {
-	  var json = JSON.parse(responseText);
-	  var quote = json.quote;
-	  var author = json.author;
-	  
-	  var dictionary = {
-        'KEY_RANDOM_QUOTE': quote,
-        'KEY_RANDOM_QUOTE_AUTHOR': author
-		};
-		
-	  Pebble.sendAppMessage(dictionary,
-        function(e) {
-          console.log('Quote info sent to Pebble successfully!');
-        },
-        function(e) {
-          console.log('Error sending Quote info to Pebble!');
-        }
-      );
-	} );
-}
-
 function locationSuccess(pos) {
 
   // Construct URL
@@ -78,7 +54,7 @@ function getWeather() {
   navigator.geolocation.getCurrentPosition(
     locationSuccess,
     locationError,
-    {timeout: 15000, maximumAge: 60000}
+    {timeout: 30000, maximumAge: 60000}
   );
 }
 
@@ -87,7 +63,6 @@ Pebble.addEventListener('showConfiguration', function(e) {
   var blinkingColons = localStorage.getItem("KEY_BLINKING_COLONS") ? localStorage.getItem("KEY_BLINKING_COLONS"):"";
   var weatherUpdateInterval = localStorage.getItem("KEY_WEATHER_UPDATE_INTERVAL") ? localStorage.getItem("KEY_WEATHER_UPDATE_INTERVAL"):"";
   var url = 'http://coolskies.net/pebble/androidweather-config.html?temperatureUnit=' + temperatureUnit + "&blinkingColons=" + blinkingColons + "&weatherUpdateInterval=" + weatherUpdateInterval;
-  console.log( url );
   Pebble.openURL(url);
 });
 
@@ -117,7 +92,6 @@ Pebble.addEventListener('webviewclosed',
 // Listen for when the watchface is opened
 Pebble.addEventListener('ready', 
   function(e) {
-    console.log('PebbleKit JS ready!');
     getWeather();
   }
 );

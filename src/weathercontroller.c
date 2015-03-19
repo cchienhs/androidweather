@@ -9,7 +9,7 @@ static TextLayer *minTemperatureLayer = NULL;
 static BitmapLayer *iconLayer = NULL; 
 static GBitmap *iconBitmap = NULL;
 
-static int temperatureUnit = 0; //Celcius=0; Fahrenheit=1;
+static int temperatureUnit = 0; //Celsius=0; Fahrenheit=1;
 static int weatherUpdateInterval = 3600; //default to one hour
 
 /**
@@ -111,6 +111,8 @@ void weathercontroller_setTemperatureUnit( char *value )
     temperatureUnit = 0;
   else
     temperatureUnit = 1;
+  
+  persist_write_string( KEY_TEMPERATURE_UNIT, value );
   updateWeatherNow();
 }
 
@@ -120,6 +122,7 @@ int weathercontroller_getWeatherUpdateInterval()
 }
 
 void weathercontroller_setWeatherUpdateInterval( int value ) {
+  persist_write_int( KEY_WEATHER_UPDATE_INTERVAL, value );
   weatherUpdateInterval = value;
   updateWeatherNow();
 }
@@ -206,6 +209,7 @@ void weathercontroller_updateTemperature( int value )
 void weathercontroller_load( Window *window )
 {
   static bool initiated = false;
+  static char buffer[20];
   
   if( initiated == false ) {
     initiated = true;
@@ -214,6 +218,15 @@ void weathercontroller_load( Window *window )
     createMaxTemperatureLayer( window );
     createMinTemperatureLayer( window );
     createIconLayer( window );
+    
+    if( persist_exists( KEY_TEMPERATURE_UNIT ) ) {
+      persist_read_string( KEY_TEMPERATURE_UNIT, buffer, 20 );
+      weathercontroller_setTemperatureUnit( buffer );
+    }
+    
+    if( persist_exists( KEY_WEATHER_UPDATE_INTERVAL ) ) {
+      weathercontroller_setWeatherUpdateInterval( persist_read_int( KEY_WEATHER_UPDATE_INTERVAL ) );
+    }
     
     eventloop_subscribe( &updateWeather );
     

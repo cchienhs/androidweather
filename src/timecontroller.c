@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "timecontroller.h"
+#include "appmessagecontroller.h"
 #include "eventloop.h"
 
 static TextLayer *hourLayer = NULL;
@@ -107,6 +108,7 @@ static void createDateLayer( Window *window )
 
 void timecontroller_setBlinkingColons( bool value )
 {
+  persist_write_bool( KEY_BLINKING_COLONS, value );
   blinkingColons = value;  
 }
 
@@ -125,6 +127,10 @@ void timecontroller_load( Window *window )
     createMinuteLayer( window );
     createDayLayer( window );
     createDateLayer( window );
+    
+    if( persist_exists( KEY_BLINKING_COLONS ) ) {
+      timecontroller_setBlinkingColons( persist_read_bool( KEY_BLINKING_COLONS) );
+    }
     updateTime();
     
     eventloop_subscribe( &updateTime );

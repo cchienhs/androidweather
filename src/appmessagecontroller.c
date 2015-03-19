@@ -26,11 +26,8 @@ static void inboxReceivedCallback(DictionaryIterator *iterator, void *context)
       case KEY_BLINKING_COLONS:
         timecontroller_setBlinkingColons( t->value->int32 );
         break;
-      case KEY_RANDOM_QUOTE:
-        
-        break;
-      case KEY_RANDOM_QUOTE_AUTHOR:
-        
+      case KEY_WEATHER_UPDATE_INTERVAL:
+        weathercontroller_setWeatherUpdateInterval( t->value->int32 );
         break;
       default:
         APP_LOG(APP_LOG_LEVEL_ERROR, "Key %d not recognized!", (int)t->key);
@@ -47,7 +44,7 @@ static void inboxDroppedCallback(AppMessageResult reason, void *context)
 
 static void outboxFailedCallback(DictionaryIterator *iterator, AppMessageResult reason, void *context) 
 {
-  APP_LOG(APP_LOG_LEVEL_ERROR, "Outbox send failed!");
+  APP_LOG(APP_LOG_LEVEL_ERROR, "Outbox send failed! %d", reason);
 }
 
 static void outboxSentCallback(DictionaryIterator *iterator, void *context) 
