@@ -2,6 +2,7 @@
 #include "timecontroller.h"
 #include "batterycontroller.h"
 #include "weathercontroller.h"
+#include "bluetoothcontroller.h"
 #include "appmessagecontroller.h"
 #include "eventloop.h"
   
@@ -22,6 +23,7 @@ static void mainWindowLoad( Window *window )
   timecontroller_load( window );
   batterycontroller_load( window );
   weathercontroller_load( window );
+  bluetoothcontroller_load( window );
   
 }
 
@@ -33,6 +35,7 @@ static void mainWindowUnload( Window *window )
   timecontroller_unload();
   batterycontroller_unload();
   weathercontroller_unload();
+  bluetoothcontroller_unload();
   
   appmessagecontroller_unload();
   eventloop_unload();

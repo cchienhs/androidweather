@@ -61,8 +61,9 @@ function getWeather() {
 Pebble.addEventListener('showConfiguration', function(e) {
   var temperatureUnit = localStorage.getItem("KEY_TEMPERATURE_UNIT") ? localStorage.getItem("KEY_TEMPERATURE_UNIT"):"";
   var blinkingColons = localStorage.getItem("KEY_BLINKING_COLONS") ? localStorage.getItem("KEY_BLINKING_COLONS"):"";
+  var vibrateOnBluetoothEvents = localStorage.getItem("KEY_VIBRATE_ON_BLUETOOTH_EVENTS") ? localStorage.getItem("KEY_VIBRATE_ON_BLUETOOTH_EVENTS"):"";
   var weatherUpdateInterval = localStorage.getItem("KEY_WEATHER_UPDATE_INTERVAL") ? localStorage.getItem("KEY_WEATHER_UPDATE_INTERVAL"):"";
-  var url = 'http://coolskies.net/pebble/androidweather-config.html?temperatureUnit=' + temperatureUnit + "&blinkingColons=" + blinkingColons + "&weatherUpdateInterval=" + weatherUpdateInterval;
+  var url = 'http://coolskies.net/pebble/androidweather-config.html?temperatureUnit=' + temperatureUnit + "&blinkingColons=" + blinkingColons + "&vibrateOnBluetoothEvents" + vibrateOnBluetoothEvents + "&weatherUpdateInterval=" + weatherUpdateInterval;
   Pebble.openURL(url);
 });
 
@@ -72,12 +73,14 @@ Pebble.addEventListener('webviewclosed',
     
     localStorage.setItem( 'KEY_TEMPERATURE_UNIT', configuration.temperatureUnit );
     localStorage.setItem( 'KEY_BLINKING_COLONS', configuration.blinkingColons );
+    localStorage.setItem( 'KEY_VIBRATE_ON_BLUETOOTH_EVENTS', configurateion.vibrateOnBluetoothEvents );
     localStorage.setItem( 'KEY_WEATHER_UPDATE_INTERVAL', configuration.weatherUpdateInterval );
     
     //Send to Pebble, persist there
     Pebble.sendAppMessage(
       {"KEY_TEMPERATURE_UNIT": configuration.temperatureUnit,
        "KEY_BLINKING_COLONS": configuration.blinkingColons,
+       "KEY_VIBRATE_ON_BLUETOOTH_EVENTS": configuration.vibrateOnBluetoothEvents,
        "KEY_WEATHER_UPDATE_INTERVAL": configuration.weatherUpdateInterval },
         function(e) {
           console.log("Sending settings data...");

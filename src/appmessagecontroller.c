@@ -2,6 +2,7 @@
 #include "appmessagecontroller.h"
 #include "weathercontroller.h"
 #include "timecontroller.h"
+#include "bluetoothcontroller.h"
    
 static void inboxReceivedCallback(DictionaryIterator *iterator, void *context) 
 {
@@ -25,6 +26,9 @@ static void inboxReceivedCallback(DictionaryIterator *iterator, void *context)
         break;
       case KEY_BLINKING_COLONS:
         timecontroller_setBlinkingColons( t->value->int32 );
+        break;
+      case KEY_VIBRATE_ON_BLUETOOTH_EVENTS:
+        bluetoothcontroller_setVibrateOnBluetoothEvents( t->value->int32 );
         break;
       case KEY_WEATHER_UPDATE_INTERVAL:
         weathercontroller_setWeatherUpdateInterval( t->value->int32 );

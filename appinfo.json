@@ -6,6 +6,7 @@
         "KEY_TEMPERATURE_MAX": 1,
         "KEY_TEMPERATURE_MIN": 2,
         "KEY_TEMPERATURE_UNIT": 4,
+        "KEY_VIBRATE_ON_BLUETOOTH_EVENTS": 7,
         "KEY_WEATHER_UPDATE_INTERVAL": 6
     },
     "capabilities": [
@@ -89,7 +90,7 @@
     "shortName": "Android Weather ",
     "uuid": "3b8d9a1a-22fa-42be-adb8-8708b07a1599",
     "versionCode": 1,
-    "versionLabel": "2.0",
+    "versionLabel": "2.02",
     "watchapp": {
         "watchface": true
     }
